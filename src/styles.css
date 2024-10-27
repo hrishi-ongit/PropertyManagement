@@ -221,3 +221,15 @@ button:hover {
 button:hover .icon {
   transform: translateX(4px);
 }
+/* CSS for Logout button */
+/* 
+.icon {
+  display: inline-block;
+  margin-left: 0.5rem;
+  rotate: 180deg;
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover .icon {
+  transform: translate(-4px, -4px);
+} */
