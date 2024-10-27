@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
+  // selector: 'app-button',
+  selector: 'button[appButton]', //button is the content being selected and appButton is the selector name
   standalone: true,
   imports: [],
   templateUrl: './button.component.html',

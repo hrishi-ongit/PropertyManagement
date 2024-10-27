@@ -7,7 +7,17 @@
         <a href="/">Management</a>
       </li>
       <li>
-        <app-button [btnTitle]="'Login'"/>
+        <!-- <app-button [btnTitle]="'Login'"/> -->
+        <button appButton [btnTitle]="'Login'"></button>
+        <!-- This is a normal practice where we see that component elements are 
+         not compiled away or replaced by the template component in angular,
+        instead they appear nested while devtools inspect..
+        like >>in navbar html >> app-button(first) >> button(second). 2 times 
+
+        ..Hence, we need to use content projection
+        i.e Extending Built in comp with custome comp via Attribute selector
+        normal element selector >> selector : 'app-button'
+        attribute selector >> selector : 'expectedSelected[selectorName]''-->
       </li>
     </ul>
   </nav>
