@@ -1,23 +1,35 @@
 <nav>
-    <ul>
-      <li>
-        <a href="/">Home</a>
-      </li>
-      <li>
-        <a href="/">Management</a>
-      </li>
-      <li>
-        <!-- <app-button [btnTitle]="'Login'"/> -->
-        <button appButton [btnTitle]="'Login'"></button>
-        <!-- This is a normal practice where we see that component elements are 
+  <ul>
+    <li>
+      <a href="/">Home</a>
+    </li>
+    <li>
+      <a href="/">Management</a>
+    </li>
+    <li>
+
+      <!-- <app-button [btnTitle]="'Login'"/> -->
+      <!--1). This is a normal practice where we see that component elements are 
          not compiled away or replaced by the template component in angular,
         instead they appear nested while devtools inspect..
         like >>in navbar html >> app-button(first) >> button(second). 2 times 
 
-        ..Hence, we need to use content projection
+        2)..Hence, we need to use content projection
         i.e Extending Built in comp with custome comp via Attribute selector
         normal element selector >> selector : 'app-button'
         attribute selector >> selector : 'expectedSelected[selectorName]''-->
-      </li>
-    </ul>
-  </nav>
+      <!-- <button appButton [btnTitle]="'Login'"></button> -->
+
+      <!-- 3) Content projection with multiple slots -->
+      <!-- <button appButton>
+        <button appButton [btnTitle]="'Login'"></button>
+        Logout →
+      </button> -->
+      <button appButton>
+        Logout
+        <span class="icon">→</span>
+      </button>
+
+    </li>
+  </ul>
+</nav>

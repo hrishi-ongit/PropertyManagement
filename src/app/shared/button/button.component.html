@@ -1,3 +1,4 @@
+<!-- for simple app-comp rendering -->
 <!-- <button>
     <span>
       {{btnTitle}}
@@ -6,9 +7,32 @@
       →
     </span>
   </button> -->
-    <span>
-        {{btnTitle}}
-    </span>
-    <span class="icon">
-        →
-    </span>
+
+
+<!-- attribut selector content projection -->
+<!-- <span>
+  {{btnTitle}}
+</span>
+<span class="icon">
+  →
+</span> -->
+
+
+<!-- multiple slot content projection -->
+<!-- this is normal content projection but its not ideal.
+It looks working but still renders duplicate elements in DOM -->
+<!-- <span>
+  <ng-content />
+</span>
+<span class="icon">
+  <ng-content />
+</span> -->
+<!-- Adding select attribute to specify projection by matching -->
+<span>
+  <ng-content/>
+</span>
+<ng-content select=".icon" />
+<!-- icon class selector here or matched selector whichever will be output here and
+ the unmatched will be output by default as on line 32
+ this is multiple content projection -->
+ 
