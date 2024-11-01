@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-server-status',
@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: './server-status.component.html',
   styleUrl: './server-status.component.css'
 })
-export class ServerStatusComponent {
+export class ServerStatusComponent implements OnInit, OnDestroy {
   dummyTrafficData = [
     {
       id: 'd1',
@@ -43,7 +43,12 @@ export class ServerStatusComponent {
   currentStatus: 'offline' | 'online' | 'unknown' = 'online'; //Setting specific types in typescript :- Literal types
 
   constructor(){
-    setInterval(()=>{
+  }
+
+  private interval?: ReturnType<typeof setInterval>;
+
+  ngOnInit(){
+    this.interval = setInterval(() => {
       const rnd = Math.random(); //0 - 0.999
       if (rnd < 0.5 ){
         this.currentStatus = 'online';
@@ -55,4 +60,12 @@ export class ServerStatusComponent {
       }
     }, 5000);
   }
+
+  ngOnDestroy(): void {
+    //If this component is removed while routing or its just closed before opening
+    //another component, the setInterval keeps working in background causing memory leake
+    //Hence, some parts of the application need to be destroyed in the this lifecycle hook
+    clearTimeout(this.interval);
+  }
+
 }
