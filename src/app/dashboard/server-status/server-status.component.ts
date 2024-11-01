@@ -68,4 +68,13 @@ export class ServerStatusComponent implements OnInit, OnDestroy {
     clearTimeout(this.interval);
   }
 
+
+  //There is another way to destroy the setInterval without using ngOnDestroy life cycle hook
+  //private destroyRef = inject(DestroyRef..from angular/core)..a class provided by Ang, injecting and storing it in a prop, 
+  //a listner can be set with that prop that will be triggering a fun whenever the compo in which we inject the ref is about to be destroyred
+  
+  //..inside ngOnInit after setInterval, set the listner >>
+  // this.destroyRef.onDestroy(()=> {
+  // clearInterval(interval);
+  // });
 }
