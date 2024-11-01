@@ -39,5 +39,20 @@ export class ServerStatusComponent {
     },
   ];
   maxTraffic = Math.max(...this.dummyTrafficData.map((data) => data.value));
-  currentStatus = 'online';
+
+  currentStatus: 'offline' | 'online' | 'unknown' = 'online'; //Setting specific types in typescript :- Literal types
+
+  constructor(){
+    setInterval(()=>{
+      const rnd = Math.random(); //0 - 0.999
+      if (rnd < 0.5 ){
+        this.currentStatus = 'online';
+      } else if(rnd < 0.9){
+        this.currentStatus = 'offline';
+      }
+      else {
+        this.currentStatus = 'unknown';
+      }
+    }, 5000);
+  }
 }

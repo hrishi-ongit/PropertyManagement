@@ -50,7 +50,7 @@ main {
 }
 
 
-#status {
+/* #status {
   display: block;
   width: 15rem;
 }
@@ -89,7 +89,7 @@ p:last-of-type {
   100% {
     opacity: 1;
   }
-}
+} */
 
 h2 {
   margin: 0;
