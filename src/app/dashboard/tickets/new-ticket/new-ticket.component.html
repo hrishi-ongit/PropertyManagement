@@ -1,4 +1,6 @@
-<form (ngSubmit)="onSubmit(titleInput)">
+<!-- <form (ngSubmit)="onSubmit(titleInput)" #formRef> -->
+  <form (ngSubmit)="onSubmit(titleInput, formRef)" #formRef>
+  <!-- <form (ngSubmit)="onSubmit(titleInput)" #formRef> -->
     <p>
       <label>Title</label>
       <input name="title" id="title" #titleInput/>
