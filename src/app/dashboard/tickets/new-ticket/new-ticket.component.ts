@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { afterNextRender, afterRender, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -52,7 +52,17 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   }
   //Use @ViewChild in ngAfterViewInit only
   // and @ContentChild in ngAfterContentInit
-  
+
+    // constructor(){
+  //   afterRender(() => {
+  //     console.log('After render')
+  //   });//listens to all changes in entier app
+  //   afterNextRender(() => {
+  //     console.log('AfterNextrender')
+  //   });//after next change i eniter app
+  // }
+
+
 
 
 }
