@@ -1,4 +1,4 @@
-import { afterNextRender, afterRender, AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { afterNextRender, afterRender, AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class NewTicketComponent implements OnInit, AfterViewInit {
   @ViewChild('formRef') form?: ElementRef<HTMLFormElement>;
+
+  @Output() add = new EventEmitter<{title: string, text: string}>();
+  //add = output<{title: string, text: string}>();
+  
 
   //Data binding with Template :-
   //1.Two way binding with [(ngModel)]
@@ -30,10 +34,10 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   
 
   // 3.@ViewChild of type ElementRef<HTMLFormElement>; line 12
-  onSubmit(input: HTMLInputElement){
+  onSubmit(input: string, text: string){
       // onSubmit(input: any or string..excepted this way when tempalte sends titleInput.value){
-      console.log(input.value);
       this.form?.nativeElement.reset();
+      this.add.emit({title: input, text: text});
     }
 
   // 4.@ContentChild('input') private control: ElementRef<HTMLInputElement | HTMLTextAreaElement>//this is control.ts
@@ -42,13 +46,13 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     //Imp note, In ngOnInit those variables that accessed through @ViewChild/ViewChildren, are not available or are undefined. ex,
-    console.log('NgOnInit');
-    console.log(this.form?.nativeElement, 'Init');//undefined init on first load
+    // console.log('NgOnInit');
+    // console.log(this.form?.nativeElement, 'Init');//undefined init on first load
   }
 
   ngAfterViewInit(): void {
-    console.log(this.form?.nativeElement,'After');//form, Afterview init on first load
-    console.log('After view init');
+    // console.log(this.form?.nativeElement,'After');//form, Afterview init on first load
+    // console.log('After view init');
   }
   //Use @ViewChild in ngAfterViewInit only
   // and @ContentChild in ngAfterContentInit
