@@ -1,5 +1,5 @@
-<div id="new-ticket">
-  <app-new-ticket (add)="addNewticket($event)"/>
+<!-- <div id="new-ticket"> -->
+  <!-- <app-new-ticket (add)="addNewticket($event)"/> -->
   <!-- <app-button [btnTitle]="'Raise a ticket'"/> -->
   <!-- <button appButton [btnTitle]="'Raise a request'"></button> -->
   <!-- <button appButton>
@@ -9,4 +9,21 @@
     Submit
     <span class="icon">→</span>
   </button> -->
+<!-- </div> -->
+
+<div class="tickets">
+  <div>
+    <ul class="tickets-container">
+      @for (ticket of tickets; track $index) {
+          <app-ticket [ticket]="ticket" (markComplete)="onClose(ticket.id)"/>
+      }
+      <!-- Fallbaack to for loop -->
+      @empty {
+        <p>No tickets available</p>
+      }
+    </ul>
+  </div>
+  <div id="new-ticket">
+    <app-new-ticket (add)="addNewticket($event)"/>
+  </div>
 </div>

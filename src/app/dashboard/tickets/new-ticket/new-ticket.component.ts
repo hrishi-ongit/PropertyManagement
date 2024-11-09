@@ -1,5 +1,7 @@
 import { afterNextRender, afterRender, AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Itickets } from '../../../shared/interface/shared.interface';
+import { TICKETS } from '../../../shared/tickets.model';
 
 @Component({
   selector: 'app-new-ticket',
@@ -11,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class NewTicketComponent implements OnInit, AfterViewInit {
   @ViewChild('formRef') form?: ElementRef<HTMLFormElement>;
 
-  @Output() add = new EventEmitter<{title: string, text: string}>();
+  @Output() add = new EventEmitter<Itickets>();
   //add = output<{title: string, text: string}>();
   
 
@@ -37,7 +39,12 @@ export class NewTicketComponent implements OnInit, AfterViewInit {
   onSubmit(input: string, text: string){
       // onSubmit(input: any or string..excepted this way when tempalte sends titleInput.value){
       this.form?.nativeElement.reset();
-      this.add.emit({title: input, text: text});
+      this.add.emit({
+        title: input,
+        request: text,
+        status : 'open',
+        id : TICKETS.length + 1 + ''
+      });
     }
 
   // 4.@ContentChild('input') private control: ElementRef<HTMLInputElement | HTMLTextAreaElement>//this is control.ts
